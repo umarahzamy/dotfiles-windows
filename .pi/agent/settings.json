@@ -1,0 +1,21 @@
+{
+  "lastChangelogVersion": "0.79.9",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "deepseek-v4-flash",
+  "packages": [
+    "npm:pi-mcp-adapter@2.9.0",
+    "npm:pi-qq@0.1.17",
+    "npm:pi-chrome@0.15.38",
+    "npm:@ff-labs/pi-fff@0.9.5",
+    "npm:@narumitw/pi-goal"
+  ],
+  "hideThinkingBlock": false,
+  "defaultThinkingLevel": "xhigh",
+  "enabledModels": [
+    "opencode-go/deepseek-v4-flash:xhigh",
+    "opencode-go/deepseek-v4-pro:xhigh",
+    "deepseek/deepseek-v4-flash:xhigh",
+    "deepseek/deepseek-v4-pro:xhigh"
+  ],
+  "theme": "dark"
+}
