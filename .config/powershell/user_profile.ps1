@@ -21,6 +21,40 @@ function dotfiles {
     git --git-dir=$HOME\dotfiles-windows --work-tree=$HOME @args
 }
 
+function sdotfiles { 
+    git --git-dir=$HOME\dotfiles-shared --work-tree=$HOME @args
+}
+
+function gitdot {
+    if (-not (Get-Command gitui -ErrorAction SilentlyContinue)) {
+        Write-Error "gitui not found"
+        return 1
+    }
+    $env:GIT_DIR = "$HOME/dotfiles-windows"
+    $env:GIT_WORK_TREE = "$HOME"
+    try {
+        gitui
+    } finally {
+        Remove-Item Env:GIT_DIR -ErrorAction SilentlyContinue
+        Remove-Item Env:GIT_WORK_TREE -ErrorAction SilentlyContinue
+    }
+}
+
+function sgitdot {
+    if (-not (Get-Command gitui -ErrorAction SilentlyContinue)) {
+        Write-Error "gitui not found"
+        return 1
+    }
+    $env:GIT_DIR = "$HOME/dotfiles-shared"
+    $env:GIT_WORK_TREE = "$HOME"
+    try {
+        gitui
+    } finally {
+        Remove-Item Env:GIT_DIR -ErrorAction SilentlyContinue
+        Remove-Item Env:GIT_WORK_TREE -ErrorAction SilentlyContinue
+    }
+}
+
 # Autossh like function
 function autossh {
     param(
