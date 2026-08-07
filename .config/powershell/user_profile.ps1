@@ -122,40 +122,9 @@ if (Test-Path $__fzfBindings) {
 }
 Remove-Variable -Name '__fzfBindings' -ErrorAction SilentlyContinue
 
-# pi -- smart session launcher for the pi coding agent
-function pi {
-  # Cache the real pi path (Get-Command runs once per session)
-  if (-not $script:piPath) {
-    $__cmd = @(Get-Command pi -CommandType Application -ErrorAction SilentlyContinue)
-    if (-not $__cmd) { Write-Error "pi: command not found"; return }
-    $script:piPath = $__cmd[0].Source
-  }
+# pi aliases (pi handles session detection natively)
+function rpi { pi --resume @args }
+function cpi { pi --continue @args }
+function nspi { pi --no-session @args }
 
-  # Fast pass-through for simple queries (skip session scan)
-  foreach ($arg in $args) {
-    if ($arg -match '^--(help|version)$' -or $arg -eq '-h') {
-      & $script:piPath @args
-      return
-    }
-  }
-
-  # Encode $PWD into the same hash pi uses for its session folder
-  $dir = $PWD.Path -replace '\\', '/'
-  $dir = $dir.TrimStart('/')
-  $encoded = "--$($dir -replace '/', '-')--"
-  $base = if ($env:PI_CODING_AGENT_SESSION_DIR) { $env:PI_CODING_AGENT_SESSION_DIR } else { "$HOME\.pi\agent\sessions" }
-  $sessionDir = Join-Path $base $encoded
-
-  $sessions = @()
-  if (Test-Path $sessionDir) {
-    $sessions = @(Get-ChildItem "$sessionDir\*.jsonl" -ErrorAction SilentlyContinue)
-  }
-
-  $n = $sessions.Count
-  switch ($n) {
-    0 { & $script:piPath @args }
-    1 { & $script:piPath --continue @args }
-    default { & $script:piPath --resume @args }
-  }
-}
 
