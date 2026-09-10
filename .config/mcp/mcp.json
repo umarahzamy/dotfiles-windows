@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "cloudflare-docs": {
+      "url": "https://docs.mcp.cloudflare.com/mcp",
+      "lifecycle": "keep-alive",
+      "directTools": true
+    },
+    "ketch": {
+      "command": "ketch",
+      "args": ["mcp", "serve"],
+      "lifecycle": "keep-alive",
+      "directTools": true,
+      "env": {
+        "KETCH_CONTEXT7_API_KEY": "${KETCH_CONTEXT7_API_KEY}"
+      }
+    }
+  }
+}
