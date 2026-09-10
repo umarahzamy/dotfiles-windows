@@ -2,9 +2,8 @@
   "defaultProvider": "deepseek",
   "defaultModel": "deepseek-v4-flash",
   "packages": [
-    "npm:pi-mcp-adapter@2.11.0",
-    "npm:@ff-labs/pi-fff@0.10.0",
-    "npm:@narumitw/pi-goal",
+    "npm:pi-mcp-adapter@2.32.1",
+    "npm:@ff-labs/pi-fff@0.10.6",
     "npm:pi-pulse@0.4.1"
   ],
   "hideThinkingBlock": false,
