@@ -72,9 +72,10 @@ require("plugins.vscode")
 -- non-vscode: plugins, keymaps, UI
 if not vim.g.vscode then
 	-- terminal keymaps
+	vim.keymap.set("t", "<C-Space>", "<C-\\><C-n>", { desc = "exit terminal (ctrl-space)" })
 	vim.keymap.set("t", "[b", "<C-\\><C-n>:bprevious!<CR>", { desc = "previous buffer" })
 	vim.keymap.set("t", "]b", "<C-\\><C-n>:bnext!<CR>", { desc = "next buffer" })
-	vim.keymap.set("t", "<C-[>", "<C-\\><C-n>", { desc = "exit terminal (esc)" })
+	-- vim.keymap.set("t", "<C-[>", "<C-\\><C-n>", { desc = "exit terminal (esc)" })
 	for _, dir in ipairs({ "h", "j", "k", "l" }) do
 		vim.keymap.set("t", "<C-w>" .. dir, ("<C-\\><C-n><C-w>%s"):format(dir), { desc = "terminal: move " .. dir })
 	end
@@ -88,6 +89,16 @@ if not vim.g.vscode then
 			require("plugins.snacks").bufdelete(ev.buf)
 		end,
 		desc = "delete terminal buffer on exit (like bufdelete)",
+	})
+
+	-- switching to a terminal buffer always lands in terminal mode
+	vim.api.nvim_create_autocmd("BufEnter", {
+		callback = function()
+			if vim.bo.buftype == "terminal" then
+				vim.cmd.startinsert()
+			end
+		end,
+		desc = "enter terminal mode when entering a terminal buffer",
 	})
 
 	vim.keymap.set("n", "<leader>qq", ":qa!<CR>", { desc = "quit all" })
