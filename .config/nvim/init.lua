@@ -95,6 +95,7 @@ if not vim.g.vscode then
 	require("plugins.conform")
 	require("plugins.fff")
 	require("plugins.grug-far")
+	require("plugins.linecounter")
 	require("plugins.lspconfig")
 	require("plugins.nvim-tree")
 	require("plugins.paste-image")
