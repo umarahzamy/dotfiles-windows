@@ -24,6 +24,13 @@ end, { expr = true, desc = "complete: accept" })
 vim.lsp.config["tinymist"] = vim.lsp.config["tinymist"] or {}
 vim.lsp.config["tinymist"].settings = { tinymist = { formatterMode = "disable" } }
 
+vim.lsp.config("clangd", {
+	cmd = { "clangd", "--background-index" },
+})
+vim.lsp.config("helm_ls", {
+	cmd = { "helm-ls", "serve" },
+})
+
 -- attach handler: buffer-local keymaps (must be registered before servers attach) ──
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
@@ -51,7 +58,7 @@ vim.lsp.enable({
 	"clangd",
 	"cssls",
 	"dockerls",
-	"emmet_ls",
+	"emmet_language_server",
 	"eslint",
 	"gopls",
 	"groovyls",
@@ -69,6 +76,6 @@ vim.lsp.enable({
 	"terraformls",
 	"tinymist",
 	"vtsls",
-	"volar",
+	"vue_ls",
 	"yamlls",
 })
