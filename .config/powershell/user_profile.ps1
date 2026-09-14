@@ -11,9 +11,6 @@ if ((Test-Path $__gitBin) -and ($env:Path -notlike "*$__gitBin*")) {
 }
 Remove-Variable -Name '__gitBin' -ErrorAction SilentlyContinue
 
-# fzf global options (alt+j/k to navigate results, like bash)
-if (Get-Command fzf -ErrorAction SilentlyContinue) {
-  $env:FZF_DEFAULT_OPTS = "--bind=alt-j:down,alt-k:up"
 }
 
 # Dotfiles management
@@ -112,19 +109,9 @@ function autossh {
     }
 }
 
-# PSReadLine + fzf key bindings
 Import-Module PSReadLine -ErrorAction SilentlyContinue
-
-# fzf integration (Ctrl+R, Ctrl+T, Alt+C)
-$__fzfBindings = Join-Path $PSScriptRoot "key-bindings.ps1"
-if (Test-Path $__fzfBindings) {
-  . $__fzfBindings
-}
-Remove-Variable -Name '__fzfBindings' -ErrorAction SilentlyContinue
 
 # pi aliases (pi handles session detection natively)
 function rpi { pi --resume @args }
 function cpi { pi --continue @args }
 function nspi { pi --no-session @args }
-
-
