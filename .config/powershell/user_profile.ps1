@@ -11,6 +11,8 @@ if ((Test-Path $__gitBin) -and ($env:Path -notlike "*$__gitBin*")) {
 }
 Remove-Variable -Name '__gitBin' -ErrorAction SilentlyContinue
 
+if (Get-Command mise -ErrorAction SilentlyContinue) {
+  (&mise activate pwsh) | Out-String | Invoke-Expression
 }
 
 # Dotfiles management

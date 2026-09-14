@@ -1,0 +1,26 @@
+[settings]
+minimum_release_age = "3d"
+
+[tools]
+# Runtime (a-z sort by name, method/org skipped)
+"github:mstorsjo/llvm-mingw" = { version = "20260908", os = ["windows"], asset_pattern = "llvm-mingw-{{ version }}-ucrt-x86_64.zip" }
+"github:astral-sh/uv" = "0.12.3"
+
+# Formatter (a-z sort by name, method/org skipped)
+# "github:mstorsjo/llvm-mingw" = { version = "20260908", os = ["windows"], asset_pattern = "llvm-mingw-{{ version }}-ucrt-x86_64.zip" } clang-format
+# "github:astral-sh/ruff" = "0.15.22" format
+
+# Linter (a-z sort by name, method/org skipped)
+# "github:mstorsjo/llvm-mingw" = { version = "20260908", os = ["windows"], asset_pattern = "llvm-mingw-{{ version }}-ucrt-x86_64.zip" } clang-tidy
+"github:astral-sh/ruff" = "0.15.22"
+
+# Others (a-z sort by name, method/org skipped)
+"github:ast-grep/ast-grep" = "latest"
+"github:atuinsh/atuin" = "latest"
+"github:ccache/ccache" = "4.13.6"
+"github:gitui-org/gitui" = "latest"
+"github:Perfare/Il2CppDumper" = { version = "latest", os = ["windows"], asset_pattern = "Il2CppDumper-win-v{{ version }}.zip" }
+"conda:make" = "4.4.1"
+"github:neovim/neovim" = "latest"
+"github:rclone/rclone" = "latest"
+"github:sxyazi/yazi" = "latest"
