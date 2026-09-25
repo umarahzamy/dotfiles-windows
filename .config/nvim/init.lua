@@ -104,6 +104,8 @@ if not vim.g.vscode then
 
 	vim.keymap.set("n", "<leader>qq", ":qa!<CR>", { desc = "quit all" })
 
+	vim.g.autosave_delay_ms = 4000 -- VS Code files.autoSaveDelay equivalent
+	require("plugins.autosave")
 	require("plugins.conform")
 	require("plugins.filetype")
 	require("plugins.fff")
