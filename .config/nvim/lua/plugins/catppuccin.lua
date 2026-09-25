@@ -6,7 +6,7 @@
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "catppuccin",
   callback = function()
-    local fg = vim.api.nvim_get_hl_by_name("Normal", true).foreground
+    local fg = vim.api.nvim_get_hl(0, { name = "Normal", link = false }).fg
     vim.api.nvim_set_hl(0, "Normal", { fg = fg, bg = "NONE" })
     -- completion menu border in theme blue (matches FloatBorder)
     vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#89b4fa", bg = "NONE" })
