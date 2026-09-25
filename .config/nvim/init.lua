@@ -111,6 +111,7 @@ if not vim.g.vscode then
 	require("plugins.linecounter")
 	require("plugins.lint")
 	require("plugins.lspconfig")
+	require("plugins.treesitter")
 	require("plugins.nvim-tree")
 	require("plugins.paste-image")
 	require("plugins.snacks")
