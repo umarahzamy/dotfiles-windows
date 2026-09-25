@@ -12,6 +12,7 @@ pcall(function()
       javascriptreact = { "biome" },
       typescriptreact = { "biome" },
       json = { "biome" },
+      toml = { "tombi" },
       yaml = { "yamlfmt" },
       sh = { "shfmt" },
       bash = { "shfmt" },
