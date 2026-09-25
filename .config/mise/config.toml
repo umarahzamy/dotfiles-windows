@@ -20,6 +20,7 @@ minimum_release_age = "3d"
 "github:ccache/ccache" = "4.13.6"
 "github:gitui-org/gitui" = "latest"
 "github:Perfare/Il2CppDumper" = { version = "latest", os = ["windows"], asset_pattern = "Il2CppDumper-win-v{{ version }}.zip" }
+"github:containers/libhvee" = { version = "0.11.0", os = ["windows"] }  # kvpctl
 "conda:make" = "4.4.1"
 "github:neovim/neovim" = "latest"
 "github:rclone/rclone" = "latest"
