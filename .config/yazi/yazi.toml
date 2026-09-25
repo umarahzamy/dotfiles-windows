@@ -1,2 +1,7 @@
 [mgr]
 show_hidden = true
+
+[tasks]
+# 0 = unlimited (defaults: 536870912 / [ 10000, 10000 ])
+image_alloc = 0
+image_bound = [ 0, 0 ]
