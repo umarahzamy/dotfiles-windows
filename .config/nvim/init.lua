@@ -43,6 +43,7 @@ vim.pack.add({
 	{ src = "https://github.com/folke/flash.nvim", name = "flash" },
 	{ src = "https://github.com/MagicDuck/grug-far.nvim", name = "grug-far" },
 	{ src = "https://github.com/neovim/nvim-lspconfig", name = "lspconfig" },
+	{ src = "https://github.com/mfussenegger/nvim-lint", name = "nvim-lint" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", name = "nvim-treesitter" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons", name = "web-devicons" },
 	{ src = "https://github.com/nvim-tree/nvim-tree.lua", name = "nvim-tree" },
@@ -108,6 +109,7 @@ if not vim.g.vscode then
 	require("plugins.fff")
 	require("plugins.grug-far")
 	require("plugins.linecounter")
+	require("plugins.lint")
 	require("plugins.lspconfig")
 	require("plugins.nvim-tree")
 	require("plugins.paste-image")
