@@ -24,6 +24,20 @@ end, { expr = true, desc = "complete: accept" })
 vim.lsp.config["tinymist"] = vim.lsp.config["tinymist"] or {}
 vim.lsp.config["tinymist"].settings = { tinymist = { formatterMode = "disable" } }
 
+-- cloud-init: validate user-data against the canonical cloud-config JSON schema.
+-- The schema is self-contained; yaml-language-server fetches and caches it.
+vim.lsp.config("yamlls", {
+	settings = {
+		yaml = {
+			schemas = {
+				["https://raw.githubusercontent.com/canonical/cloud-init/main/cloudinit/config/schemas/schema-cloud-config-v1.json"] = {
+					"**/user-data",
+				},
+			},
+		},
+	},
+})
+
 vim.lsp.config("clangd", {
 	cmd = { "clangd", "--background-index" },
 })
