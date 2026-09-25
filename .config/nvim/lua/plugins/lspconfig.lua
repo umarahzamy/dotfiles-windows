@@ -41,10 +41,6 @@ vim.lsp.config("yamlls", {
 vim.lsp.config("clangd", {
 	cmd = { "clangd", "--background-index" },
 })
-vim.lsp.config("helm_ls", {
-	cmd = { "helm-ls", "serve" },
-})
-
 -- attach handler: buffer-local keymaps (must be registered before servers attach) ──
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
