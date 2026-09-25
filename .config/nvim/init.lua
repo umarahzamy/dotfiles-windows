@@ -104,6 +104,7 @@ if not vim.g.vscode then
 	vim.keymap.set("n", "<leader>qq", ":qa!<CR>", { desc = "quit all" })
 
 	require("plugins.conform")
+	require("plugins.filetype")
 	require("plugins.fff")
 	require("plugins.grug-far")
 	require("plugins.linecounter")
