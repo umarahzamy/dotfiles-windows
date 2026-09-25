@@ -59,7 +59,6 @@ vim.lsp.enable({
 	"cssls",
 	"dockerls",
 	"emmet_language_server",
-	"eslint",
 	"gopls",
 	"groovyls",
 	"helm_ls",
