@@ -71,6 +71,7 @@ vim.lsp.enable({
 	"luau_lsp",
 	"phpactor",
 	"rust_analyzer",
+	"systemd_lsp",
 	"svelte",
 	"tailwindcss",
 	"terraformls",

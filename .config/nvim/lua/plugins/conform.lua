@@ -19,6 +19,8 @@ pcall(function()
       html = { "biome" },
       sql = { "sql_formatter" },
       typst = { "typstyle" },
+      -- no CLI formatter for systemd/quadlet; use systemd_lsp's formatting
+      systemd = { lsp_format = "fallback" },
     },
     format_on_save = { timeout_ms = 500 },
   })
