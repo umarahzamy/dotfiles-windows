@@ -92,6 +92,70 @@ pcall(function()
     end
   end
 
+  -- yazi-like copy helpers
+  local function copy_set(text)
+    vim.fn.setreg("+", text, "v")
+    vim.notify(string.format("Copied: %s", text))
+  end
+
+  local function node_path(node)
+    if not node then
+      return nil
+    end
+    if node.name == ".." then
+      return node.explorer and node.explorer.absolute_path or nil
+    end
+    return node.absolute_path
+  end
+
+  -- cc: absolute path, no trailing slash
+  local function copy_abs_path()
+    local path = node_path(nt_api.tree.get_node_under_cursor())
+    if not path then
+      return
+    end
+    path = path:gsub("/+$", "")
+    if path == "" then
+      path = "/"
+    end
+    copy_set(path)
+  end
+
+  -- cd: absolute parent directory
+  local function copy_dir_path()
+    local path = node_path(nt_api.tree.get_node_under_cursor())
+    if not path then
+      return
+    end
+    copy_set(vim.fn.fnamemodify(path, ":h"))
+  end
+
+  -- cf: filename
+  local function copy_filename()
+    local node = nt_api.tree.get_node_under_cursor()
+    if not node then
+      return
+    end
+    if node.name == ".." then
+      copy_set(vim.fn.fnamemodify(node.explorer.absolute_path, ":t"))
+    else
+      copy_set(node.name)
+    end
+  end
+
+  -- cn: filename without extension
+  local function copy_basename()
+    local node = nt_api.tree.get_node_under_cursor()
+    if not node then
+      return
+    end
+    local name = node.name
+    if name == ".." then
+      name = vim.fn.fnamemodify(node.explorer.absolute_path, ":t")
+    end
+    copy_set(vim.fn.fnamemodify(name, ":r"))
+  end
+
   -- buffer ui: hide cursor + ~ lines + number/sign gap
   local cursor_hl = vim.api.nvim_get_hl(0, { name = "Cursor", link = false })
   vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
@@ -124,15 +188,15 @@ pcall(function()
       m("c", function()
         local key = vim.fn.getcharstr()
         if key == "c" then
-          nt_api.fs.copy.relative_path()
+          copy_abs_path()
         elseif key == "d" then
-          nt_api.fs.copy.absolute_path()
+          copy_dir_path()
         elseif key == "f" then
-          nt_api.fs.copy.filename()
+          copy_filename()
         elseif key == "n" then
-          nt_api.fs.copy.basename()
+          copy_basename()
         end
-      end, "copy: path|dir|file|name")
+      end, "copy: path|dir|filename|name")
       m("y", nt_api.fs.copy.node, "yank (copy) file/dir")
       m("d", nt_api.fs.trash, "trash file/dir")
       m("D", "<Nop>", "(disabled)")
