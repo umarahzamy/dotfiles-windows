@@ -4,7 +4,8 @@
   "defaultModel": "deepseek-v4.1-flash",
   "packages": [
     "npm:@ff-labs/pi-fff@0.10.6",
-    "npm:pi-pulse@0.4.1"
+    "npm:pi-pulse@0.4.1",
+    "npm:@juicesharp/rpiv-ask-user-question"
   ],
   "hideThinkingBlock": false,
   "defaultThinkingLevel": "high",
