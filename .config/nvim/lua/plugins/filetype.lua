@@ -7,12 +7,20 @@ local function is_ansible(path, bufnr)
 	-- path conventions
 	if
 		path:match("/playbooks?/")
-		or path:match("/roles/[^/]+/(tasks|handlers|vars|defaults|meta)/")
+		-- Lua patterns have no alternation (`|`), so each role subdir is its own match.
+		or path:match("/roles/[^/]+/tasks/")
+		or path:match("/roles/[^/]+/handlers/")
+		or path:match("/roles/[^/]+/vars/")
+		or path:match("/roles/[^/]+/defaults/")
+		or path:match("/roles/[^/]+/meta/")
 		or path:match("/group_vars/")
 		or path:match("/host_vars/")
 		or path:match("/[^/]*playbook[^/]*%.ya?ml$")
 		or path:match("/site%.ya?ml$")
 		or path:match("/ansible[^/]*%.ya?ml$")
+		or path:match("/inventor[^/]*%.ya?ml$")
+		or path:match("/inventor[^/]*/")
+		or path:match("/hosts%.ya?ml$")
 	then
 		return true
 	end
