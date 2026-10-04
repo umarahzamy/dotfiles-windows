@@ -9,6 +9,12 @@
   ],
   "hideThinkingBlock": false,
   "defaultThinkingLevel": "high",
+  "retry": {
+    "enabled": true,
+    "maxRetries": 9007199254740990,
+    "baseDelayMs": 500,
+    "maxAgentDelayMs": 8000
+  },
   "enabledModels": [
     "opencode-go/deepseek-v4.1-flash:high",
     "opencode-go/glm-5.3-flash:high",
