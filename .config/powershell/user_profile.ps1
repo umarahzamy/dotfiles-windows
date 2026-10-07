@@ -50,6 +50,11 @@ function gitdot {
 
 Import-Module PSReadLine -ErrorAction SilentlyContinue
 
+# --- sshd-on-windows: drop PSReadLine in SSH sessions (ConPTY input quirks) ---
+if ($env:SSH_CLIENT -or $env:SSH_TTY -or $env:SSH_CONNECTION) {
+    Remove-Module PSReadLine -ErrorAction SilentlyContinue
+}
+
 function rpi { pi --resume @args }
 function cpi { pi --continue @args }
 function nspi { pi --no-session @args }
