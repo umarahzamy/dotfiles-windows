@@ -1,10 +1,9 @@
-# Source local env vars (outside git tree — survives dotfiles checkout)
+# untracked local env vars
 $exportsFile = "$HOME\.exports.ps1"
 if (Test-Path $exportsFile) {
   . $exportsFile
 }
 
-# Add Git for Windows bin to PATH (provides bash.exe, etc.)
 $__gitBin = "$HOME\scoop\apps\git\current\bin"
 if ((Test-Path $__gitBin) -and ($env:Path -notlike "*$__gitBin*")) {
   $env:Path = "$__gitBin;$env:Path"
@@ -15,8 +14,7 @@ if (Get-Command mise -ErrorAction SilentlyContinue) {
   (&mise activate pwsh) | Out-String | Invoke-Expression
 }
 
-# Dotfiles management
-function dotfiles { 
+function dotfiles {
     git --git-dir=$HOME\dotfiles-windows --work-tree=$HOME @args
 }
 
@@ -37,9 +35,6 @@ function gitdot {
 
 Import-Module PSReadLine -ErrorAction SilentlyContinue
 
-# pi aliases (pi handles session detection natively)
 function rpi { pi --resume @args }
 function cpi { pi --continue @args }
 function nspi { pi --no-session @args }
-
-
