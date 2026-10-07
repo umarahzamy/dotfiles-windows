@@ -11,6 +11,21 @@ if ((Test-Path $__gitBin) -and ($env:Path -notlike "*$__gitBin*")) {
 Remove-Variable -Name '__gitBin' -ErrorAction SilentlyContinue
 
 if (Get-Command mise -ErrorAction SilentlyContinue) {
+  # persist shims for -NoProfile / cmd / batch
+  $__shims = "$env:LOCALAPPDATA\mise\shims"
+  if ($env:LOCALAPPDATA -and (Test-Path 'HKCU:\Environment')) {
+    $__key = Get-Item 'HKCU:\Environment'
+    try { $__kind = $__key.GetValueKind('Path') }
+    catch { $__kind = [Microsoft.Win32.RegistryValueKind]::ExpandString }
+    $__raw = $__key.GetValue('Path', '', 'DoNotExpandEnvironmentNames')
+    if ($__raw -notlike "*$__shims*") {
+      $__new = if ([string]::IsNullOrWhiteSpace($__raw)) { $__shims } else { "$__raw;$__shims" }
+      $__key.SetValue('Path', $__new, $__kind)
+    }
+    Remove-Variable -Name '__key','__kind','__raw','__new' -ErrorAction SilentlyContinue
+  }
+  Remove-Variable -Name '__shims' -ErrorAction SilentlyContinue
+
   (&mise activate pwsh) | Out-String | Invoke-Expression
 }
 
